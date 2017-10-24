@@ -28,7 +28,12 @@ public class Bank {
     public boolean withdrawMoney(final BankAccount bankAccount, final double amount) {
         /*
          * Implement this function
-         */
+         */ if (bankAccount.getAccountBalance() - amount >= 0) {
+        bankAccount.setAccountBalance(bankAccount.getAccountBalance() - amount  );
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -45,6 +50,12 @@ public class Bank {
         /*
          * Implement this function
          */
+        if(bankAccount.getAccountBalance() + amount >= 0) {
+        bankAccount.setAccountBalance(bankAccount.getAccountBalance() + amount  );
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -64,6 +75,12 @@ public class Bank {
         /*
          * Implement this function
          */
+        if(source.getAccountBalance() - amount >= 0) {
+        withdrawMoney(source, amount);
+        depositMoney(destination, amount);
+        return true;
+    }
+    return false;
     }
 
     /**
@@ -77,6 +94,7 @@ public class Bank {
         /*
          * Implement this function
          */
+        bankAccount.setOwnerName(name);
     }
 
     public static int totalAccounts = 0;
@@ -86,6 +104,7 @@ public class Bank {
      * @return the total number of accounts
      */
     public static int getNumberOfAccount() {
+        return totalAccounts;
         /*
          * Implement this function
          */
@@ -103,10 +122,10 @@ public class Bank {
         System.out.println("We are excited to have you banking with us!\n\n");
 
         // Create Bank Accounts
-        BankAccount account1 = new BankAccount("John Doe", BankAccountType.CHECKINGS);
+        BankAccount account1 = new BankAccount("John Doe", "CHECKINGS");
         System.out.println("Bank account for John Doe created");
 
-        BankAccount account2 = new BankAccount("Jony Ive", BankAccountType.STUDENT);
+        BankAccount account2 = new BankAccount("Jony Ive", "STUDENT");
         System.out.println("Bank account for Johy Ive created\n\n");
 
         // Deposit money to both accounts and print new balance
